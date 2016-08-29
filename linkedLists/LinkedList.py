@@ -9,34 +9,34 @@ class Node:
 class LinkedList:
 
   def __init__(self):
-    self.first_node = None
-    self.last_node = None
+    self.head = None
+    self.tail = None
 
   def append_to_tail(self, data):
     new_node = Node(data)
-    if self.first_node == None and self.last_node == None:
-      self.first_node = new_node
-      self.last_node = new_node
+    if self.head == None and self.tail == None:
+      self.head = new_node
+      self.tail = new_node
     else:
-      self.last_node.next_node = new_node
-      self.last_node = new_node
+      self.tail.next_node = new_node
+      self.tail = new_node
 
   def remove(self, data):
-    current_node = self.first_node
+    current_node = self.head
     previous_node = None
     while current_node is not None:
       if current_node.data is data:
         #deleting list with one item
-        if current_node is self.first_node and current_node is self.last_node:
-          self.first_node = None
-          self.last_node = None
+        if current_node is self.head and current_node is self.tail:
+          self.head = None
+          self.tail = None
         #deleting head
-        elif current_node is self.first_node:
-          self.first_node = current_node.next_node
+        elif current_node is self.head:
+          self.head = current_node.next_node
         #deleting tail
-        elif current_node is self.last_node:
-          self.last_node = previous_node
-          self.last_node.next_node = None
+        elif current_node is self.tail:
+          self.tail = previous_node
+          self.tail.next_node = None
         #deleting in between
         else:
           previous_node.next_node = current_node.next_node
@@ -49,14 +49,15 @@ class LinkedList:
 
     return False
 
+  def __str__(self):
+    current_node = self.head
+    response = ''
+    
+    while current_node is not None:
+      response += str(current_node.data) + ' => '
+      current_node = current_node.next_node
 
-
-my_list = LinkedList()
-my_list.append_to_tail('lip')
-print(vars(my_list))
-my_list.remove('lip')
-print(vars(my_list))
-
+    return response
 
 
 
