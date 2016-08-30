@@ -52,7 +52,7 @@ class LinkedList:
   def __str__(self):
     current_node = self.head
     response = ''
-    
+
     while current_node is not None:
       response += str(current_node.data) + ' => '
       current_node = current_node.next_node
