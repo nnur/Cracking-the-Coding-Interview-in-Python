@@ -12,9 +12,9 @@ class Stack:
 
   def pop(self):
     if self.top:
-      temp = self.top.next_node
-      self.top.next_node = None
-      self.top = temp
+      temp = self.top
+      self.top = self.top.next_node
+      temp.next_node = None
     return temp
 
   def push(self, item):
@@ -32,7 +32,7 @@ class Stack:
     response = ''
 
     while current_node is not None:
-      response += str(current_node.data) + ' => '
+      response += str(current_node.data) + '=> '
       current_node = current_node.next_node
 
     return response
